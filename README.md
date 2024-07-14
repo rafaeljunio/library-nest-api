@@ -11,17 +11,10 @@
 
 Library NestJS API
 
-## Installation
-
-```bash
-$ npm install
-
-```
-
 ## Configuration environment variables
 
 ```env
-DB_URI=mongodb://localhost:27017/library-next-api
+DB_URI=mongodb://mongo:27017/library-next-api
 
 JWT_SECRET=your-secret-jwt
 JWT_EXPIRES=3d
@@ -31,8 +24,7 @@ JWT_EXPIRES=3d
 ## Running the app
 
 ```bash
-# watch mode
-$ npm run start:dev
+$ docker compose up --build
 
 ```
 
@@ -40,6 +32,8 @@ $ npm run start:dev
 
 ```bash
 # unit tests
+docker exec -it nest-app /bin/sh
+
 $ npm run test
 
 ```
@@ -47,20 +41,6 @@ $ npm run test
 ## Documentation API
 
 ```bash
-http://localhost:3000/api/docs
+http://localhost:3333/api/docs
 
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
