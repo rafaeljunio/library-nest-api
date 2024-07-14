@@ -4,7 +4,7 @@ import { Model } from 'mongoose'
 import { User } from './schemas/user.schema'
 import { AuthService } from './auth.service'
 import { JwtService } from '@nestjs/jwt'
-import * as bcrypt from 'bcrypt'
+import * as bcrypt from 'bcryptjs'
 import { ConflictException, UnauthorizedException } from '@nestjs/common'
 
 describe('AuthService', () => {
