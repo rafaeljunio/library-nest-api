@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { ApiProperty } from '@nestjs/swagger'
 import { Document } from 'mongoose'
 
 export enum Role {
@@ -11,6 +12,7 @@ export enum Role {
 })
 export class User extends Document {
   @Prop()
+  @ApiProperty({ example: 'John Doe', description: 'The name of the user' })
   name: string
 
   @Prop({ unique: [true, 'Duplicate email entered'] })
