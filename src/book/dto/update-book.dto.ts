@@ -1,12 +1,10 @@
 import {
+  IsDate,
   IsEmpty,
-  IsEnum,
+  IsMongoId,
   IsNotEmpty,
-  IsNumber,
   IsString,
 } from 'class-validator'
-import { Category } from '../schemas/book.schema'
-import type { User } from 'src/auth/schemas/user.schema'
 
 export class UpdateBookDto {
   @IsNotEmpty()
@@ -18,17 +16,10 @@ export class UpdateBookDto {
   readonly description: string
 
   @IsNotEmpty()
-  @IsString()
-  readonly author: string
+  @IsDate()
+  readonly publicationDate: Date
 
-  @IsNotEmpty()
-  @IsNumber()
-  readonly price: number
-
-  @IsNotEmpty()
-  @IsEnum(Category, { message: 'Please enter correct category.' })
-  readonly category: Category
-
-  @IsEmpty({ message: 'You cannot pass user id' })
-  readonly user: User
+  @IsEmpty({ message: 'You cannot pass author id' })
+  @IsMongoId()
+  readonly authorId: string
 }

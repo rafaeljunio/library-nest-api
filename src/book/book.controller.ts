@@ -29,8 +29,8 @@ export class BookController {
 
   @Post()
   @UseGuards(AuthGuard())
-  async createBook(@Body() book: CreateBookDto, @Req() req): Promise<Book> {
-    return this.bookService.create(book, req.user)
+  async createBook(@Body() book: CreateBookDto): Promise<Book> {
+    return this.bookService.create(book)
   }
 
   @Get(':id')

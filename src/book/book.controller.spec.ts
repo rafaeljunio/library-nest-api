@@ -1,10 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { BookService } from './book.service'
-import { Category } from './schemas/book.schema'
 import { BookController } from './book.controller'
 import { PassportModule } from '@nestjs/passport'
-import type { CreateBookDto } from './dto/create-book.dto'
-import type { UpdateBookDto } from './dto/update-book.dto'
+import { CreateBookDto } from './dto/create-book.dto'
+import { UpdateBookDto } from './dto/update-book.dto'
 
 describe('BookController', () => {
   let bookService: BookService
@@ -12,18 +11,17 @@ describe('BookController', () => {
 
   const mockBook = {
     _id: '66904ff4c8f56f618558010d',
-    user: '669035b047406fa0da8ba059',
     title: 'New Book',
     description: 'Book Description',
-    author: 'Author 1',
-    price: 100,
-    category: Category.FANTASY,
+    publicationDate: new Date('2010-10-10'),
+    authorId: '60d21b4667d0d8992e610c85',
   }
 
-  const mockUser = {
-    _id: '61c0ccf11d7bf83d153d7c06',
-    name: 'Ghulam',
-    email: 'ghulam1@gmail.com',
+  const mockAuthor = {
+    _id: '66904ff4c8f56f618558010d',
+    name: 'New Author',
+    biography: 'Author biography',
+    birthDate: new Date('1980-10-10'),
   }
 
   const mockBookService = {
@@ -68,20 +66,16 @@ describe('BookController', () => {
 
   describe('createBook', () => {
     it('should create a new book', async () => {
-      const newBook = {
+      const newBook: CreateBookDto = {
         title: 'New Book',
         description: 'Book Description',
-        author: 'Author',
-        price: 100,
-        category: Category.FANTASY,
+        publicationDate: new Date('2010-10-10'),
+        authorId: '60d21b4667d0d8992e610c85',
       }
 
       mockBookService.create = jest.fn().mockResolvedValueOnce(mockBook)
 
-      const result = await bookController.createBook(
-        newBook as CreateBookDto,
-        mockUser,
-      )
+      const result = await bookController.createBook(newBook)
 
       expect(bookService.create).toHaveBeenCalled()
       expect(result).toEqual(mockBook)
