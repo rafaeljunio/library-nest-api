@@ -31,7 +31,6 @@ $ docker compose up --build
 ## Test
 
 ```bash
-# unit tests
 docker exec -it nest-app /bin/sh
 
 $ npm run test
