@@ -1,7 +1,5 @@
 import { Module } from '@nestjs/common'
 
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
 import { BookModule } from './book/book.module'
 import { ConfigModule } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
@@ -19,7 +17,5 @@ import { AuthorModule } from './author/author.module'
     AuthorModule,
     AuthModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

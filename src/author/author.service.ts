@@ -24,7 +24,7 @@ export class AuthorService {
 
     const keyword = query.keyword
       ? {
-          title: {
+          name: {
             $regex: query.keyword,
             $options: 'i',
           },

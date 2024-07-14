@@ -1,16 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { AuthService } from './auth.service'
 import { AuthController } from './auth.controller'
+import { Role } from './schemas/user.schema'
 
 describe('AuthController', () => {
   let authService: AuthService
   let authController: AuthController
-
-  const mockUser = {
-    _id: '61c0ccf11d7bf83d153d7c06',
-    name: 'Ghulam',
-    email: 'ghulam1@gmail.com',
-  }
 
   let jwtToken = 'jwtToken'
 
@@ -41,9 +36,10 @@ describe('AuthController', () => {
   describe('signUp', () => {
     it('should register a new user', async () => {
       const signUpDto = {
-        name: 'Ghulam',
-        email: 'ghulam1@gmail.com',
+        name: 'John Doe',
+        email: 'user@email.com',
         password: 'password123',
+        role: Role.USER,
       }
 
       const result = await authController.signUp(signUpDto)
@@ -56,7 +52,7 @@ describe('AuthController', () => {
   describe('login', () => {
     it('should login user', async () => {
       const loginDto = {
-        email: 'ghulam1@gmail.com',
+        email: 'user@email.com',
         password: 'password123',
       }
 

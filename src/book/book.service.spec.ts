@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { BookService } from './book.service'
-import { Book, Category } from './schemas/book.schema'
+import { Book } from './schemas/book.schema'
 import { getModelToken } from '@nestjs/mongoose'
 import mongoose, { Model } from 'mongoose'
 import { BadRequestException, NotFoundException } from '@nestjs/common'
@@ -13,18 +13,9 @@ describe('BookService', () => {
 
   const mockBook = {
     _id: '66904ff4c8f56f618558010d',
-    user: '669035b047406fa0da8ba059',
     title: 'New Book',
     description: 'Book Description',
-    author: 'Author 1',
-    price: 100,
-    category: Category.FANTASY,
-  }
-
-  const mockUser = {
-    _id: '61c0ccf11d7bf83d153d7c06',
-    name: 'Ghulam',
-    email: 'ghulam1@gmail.com',
+    price: new Date('2020-10-10'),
   }
 
   const mockBookService = {
@@ -78,19 +69,14 @@ describe('BookService', () => {
       const newBook = {
         title: 'New Book',
         description: 'Book Description',
-        author: 'Author',
-        price: 100,
-        category: Category.FANTASY,
+        publicationDate: new Date('2020-10-10'),
       }
 
       jest
         .spyOn(model, 'create')
         .mockImplementationOnce(() => Promise.resolve(mockBook as any))
 
-      const result = await bookService.create(
-        newBook as CreateBookDto,
-        mockUser as User,
-      )
+      const result = await bookService.create(newBook as CreateBookDto)
 
       expect(result).toEqual(mockBook)
     })

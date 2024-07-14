@@ -120,7 +120,7 @@ describe('AuthorService', () => {
 
   describe('updateById', () => {
     it('should update and return a author', async () => {
-      const updatedAuthor = { ...mockAuthor, title: 'Updated name' }
+      const updatedAuthor = { ...mockAuthor, name: 'Updated name' }
       const author = { name: 'Updated name' }
 
       jest.spyOn(model, 'findByIdAndUpdate').mockResolvedValue(updatedAuthor)

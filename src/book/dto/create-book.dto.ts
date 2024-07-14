@@ -1,5 +1,6 @@
 import {
   IsDate,
+  IsDefined,
   IsEmpty,
   IsMongoId,
   IsNotEmpty,
@@ -16,10 +17,10 @@ export class CreateBookDto {
   readonly description: string
 
   @IsNotEmpty()
-  @IsDate()
+  @IsString()
   readonly publicationDate: Date
 
-  @IsEmpty({ message: 'You cannot pass author id' })
+  @IsDefined()
   @IsMongoId()
   readonly authorId: string
 }

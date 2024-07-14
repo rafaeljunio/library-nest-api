@@ -8,7 +8,6 @@ import { Book } from './schemas/book.schema'
 import * as mongoose from 'mongoose'
 
 import { ParsedUrlQuery } from 'node:querystring'
-import { User } from '../auth/schemas/user.schema'
 
 @Injectable()
 export class BookService {
